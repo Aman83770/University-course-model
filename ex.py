@@ -14,8 +14,10 @@ def search():
 	if request.method == 'POST':
 		form_inp = request.form['inp']
  	z= result(form_inp)
- 	return jsonify(branch=z)
-
+ 	if not z:
+ 		return "Your search didnt match with any course !"
+ 	else:
+ 		return jsonify(branch=z)
 
 
 
@@ -25,7 +27,10 @@ def searchc():
 	if request.method == 'POST':
 		form_inp = request.form['inp']
  	li= resultc(form_inp)
- 	return jsonify(University=li)
+ 	if not li:
+ 		return "Your search didnt match with any university !"
+ 	else:
+ 		return jsonify(University=li)
 
 
 
