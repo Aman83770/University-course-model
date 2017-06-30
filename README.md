@@ -1,9 +1,11 @@
 Installation:
 
-To run this project, python flask framework should be installed.
+1. install python and flask for windows: http://www1.cmc.edu/pages/faculty/alee/cs40/penv/installFlaskOnWindows.html
 
-Save the project and open terminal in that directory.
+   for ubuntu/linix : sudo apt-get install python, sudo apt-gey install python-flask
 
-Run command : python ex.py
+2.Save the project and open that directory in terminal.
 
-open http://127.0.0.1:5000/  in browser.
+3.Run command : python ex.py
+
+4.open http://127.0.0.1:5000/  in browser.
