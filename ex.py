@@ -1,37 +1,4 @@
-from flask import Flask, render_template, request
-from flask import jsonify
-
-app= Flask(__name__)
-
-@app.route('/')
-
-def home():
-	return render_template('form.html')
-
-@app.route('/searchb',methods= ['POST', 'GET'])
-
-def search():
-	if request.method == 'POST':
-		form_inp = request.form['inp']
- 	z= result(form_inp)
- 	if not z:
- 		return "Your search didnt match with any course !"
- 	else:
- 		return jsonify(branch=z)
-
-
-@app.route('/searchc',methods= ['POST', 'GET'])
-
-def searchc():
-	if request.method == 'POST':
-		form_inp = request.form['inp']
- 	li= resultc(form_inp)
- 	if not li:
- 		return "Your search didnt match with any university !"
- 	else:
- 		return jsonify(University=li)
-
-
+# pre-made database (json array)
 
 a=[
 {
@@ -72,24 +39,70 @@ a=[
 }
 ]
 
-def result(form_inp):
-	k=[]
-	for y in a:
-		for z in y["course"]:
-			str1=z["name"]
-			if str(form_inp).upper() in str1:
-				k.append(z)
+
+
+from flask import Flask, render_template, request
+from flask import jsonify
+
+app= Flask(__name__)
+
+#home page  http://localhost:5000/
+
+@app.route('/')
+
+def home():
+	return render_template('form.html')
+
+@app.route('/searchb',methods= ['POST', 'GET'])
+
+#branch search  http://localhost:5000/searchb
+
+def search():
+	if request.method == 'POST':
+		form_inp = request.form['inp']
+ 	output= branch_search(form_inp)
+ 	if not output:
+ 		return "Your search didnt match with any course !"
+ 	else:
+ 		return jsonify(branch=output)
+
+
+#university search http://localhost:5000/searchc
+
+@app.route('/searchc',methods= ['POST', 'GET'])
+
+def searchc():
+	if request.method == 'POST':
+		form_inp = request.form['inp']
+ 	output= university_search(form_inp)
+ 	if not output:
+ 		return "Your search didnt match with any university !"
+ 	else:
+ 		return jsonify(University=output)
+
+
+# extracting branch matching with user data from json array a
+
+def branch_search(form_inp):
+	k=[]										#locally declared list
+	for y in a:									#loop in json array a
+		for z in y["course"]:					#loop in a[course] , searching through course
+			str1=z["name"]						# name of branch in array
+			if str(form_inp).upper() in str1:	#if enter detail present in branch
+				k.append(z)						#make a list of json data of branch
 	return k
 	
 
+# extracting university detail matching with user data from json array a
 
-def resultc(form_inp):
-	l=[]
-	for y in a:
-		str1=y["name"]
-		if str(form_inp).upper() in str1:
-			l.append(y)
-	return l
+
+def university_search(form_inp):
+	k=[]										#locally declared list
+	for y in a:									#iterate through json array
+		str1=y["name"]							#copy name of university in string str1
+		if str(form_inp).upper() in str1:		#if input is present in str
+			k.append(y)							#append json data in list k
+	return k
 	
 
 
