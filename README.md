@@ -2,7 +2,7 @@ Installation:
 
 1. install python and flask for windows: http://www1.cmc.edu/pages/faculty/alee/cs40/penv/installFlaskOnWindows.html
 
-   for ubuntu/linix : sudo apt-get install python, sudo apt-gey install python-flask
+   for ubuntu/linix : sudo apt-get install python, sudo apt-get install python-flask
 
 2.Save the project and open that directory in terminal.
 
