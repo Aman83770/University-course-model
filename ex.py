@@ -20,8 +20,6 @@ def search():
  		return jsonify(branch=z)
 
 
-
-
 @app.route('/searchc',methods= ['POST', 'GET'])
 
 def searchc():
@@ -32,9 +30,6 @@ def searchc():
  		return "Your search didnt match with any university !"
  	else:
  		return jsonify(University=li)
-
-
-
 
 
 
